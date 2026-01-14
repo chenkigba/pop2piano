@@ -1,0 +1,53 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pop2piano"
+version = "0.2.0"
+description = "Convert pop music to piano cover using AI"
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+license = "MIT"
+keywords = ["music", "piano", "midi", "ai", "deep-learning", "audio"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio :: Analysis",
+]
+dependencies = [
+    "torch>=2.0.0",
+    "torchaudio>=2.0.0",
+    "transformers>=4.40.0",
+    "omegaconf>=2.3.0",
+    "librosa>=0.10.0",
+    "pretty-midi>=0.2.10",
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "soundfile>=0.12.0",
+    "huggingface-hub>=0.20.0",
+]
+
+[project.optional-dependencies]
+synth = ["pyfluidsynth>=1.3.0"]
+dev = ["pytest>=7.0", "pytest-cov", "ruff"]
+
+[project.urls]
+Homepage = "https://github.com/sweetcocoa/pop2piano"
+Repository = "https://github.com/sweetcocoa/pop2piano"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pop2piano"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "src/pop2piano/**/*.py",
+    "src/pop2piano/config/*.yaml",
+]
+
+[tool.hatch.build]
+sources = ["src"]
